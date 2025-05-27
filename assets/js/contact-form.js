@@ -46,9 +46,18 @@ class ContactForm {
     setupFormValidation() {
         const form = document.getElementById('contactForm');
         if (form) {
+            // Remove any existing event listeners
+            form.removeEventListener('submit', this.handleSubmit);
+            
+            // Add the submit handler
             form.addEventListener('submit', (e) => {
-                // Add any additional client-side validation here
+                console.log('Form submit event triggered');
+                
+                // Show submitting state
                 this.showSubmittingState();
+                
+                // Let the form submit naturally - don't prevent default
+                // The form will submit to the same page with POST method
             });
         }
     }
@@ -57,19 +66,16 @@ class ContactForm {
         const submitBtn = document.querySelector('#contactForm button[type="submit"]');
         if (submitBtn) {
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
             submitBtn.disabled = true;
             
-            // Re-enable after 5 seconds as fallback
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 5000);
+            console.log('Submit button state changed to sending...');
         }
     }
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Contact form JavaScript loaded');
     new ContactForm();
 }); 

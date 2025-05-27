@@ -1,3 +1,29 @@
+<?php
+// Include the email handler and process form BEFORE any HTML output
+require_once 'includes/email-handler.php';
+
+// Check for success parameter from redirect
+$success = isset($_GET['success']) && $_GET['success'] == '1';
+
+if (!$success && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Initialize the contact form handler and process form
+    $contactForm = new ContactFormHandler();
+    $contactForm->processForm();
+    $errors = $contactForm->getErrors();
+    $success = $contactForm->isSuccess();
+    $formData = $contactForm->getFormData();
+} else {
+    // If showing success from redirect or GET request, initialize empty form data
+    $errors = [];
+    $formData = [
+        'fullName' => '',
+        'email' => '',
+        'phone' => '',
+        'country' => '',
+        'message' => ''
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -236,16 +262,6 @@
                             <p class="lead text-secondary-brand">Get in touch with our team to discuss your project and discover how we can help you achieve your digital goals. Let's build something amazing together.</p>
                         </div>
                         
-                        <?php
-                        // Include the email handler
-                        require_once 'includes/email-handler.php';
-                        
-                        // Initialize the contact form handler
-                        $contactForm = new ContactFormHandler();
-                        $errors = $contactForm->errors;
-                        $success = $contactForm->success;
-                        ?>
-                        
                         <?php if ($success): ?>
                             <div class="alert alert-success animate-on-scroll" role="alert">
                                 <h4 class="alert-heading">
@@ -273,19 +289,19 @@
                             <form method="POST" id="contactForm" novalidate class="needs-validation">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label for="full_name" class="form-label">
+                                        <label for="fullName" class="form-label">
                                             <i class="fas fa-user me-1"></i>Full Name *
                                         </label>
                                         <input type="text" 
-                                               class="form-control <?php echo $contactForm->hasError('full_name') ? 'is-invalid' : ''; ?>" 
-                                               id="full_name" 
-                                               name="full_name" 
-                                               value="<?php echo $contactForm->getFormValue('full_name'); ?>" 
+                                               class="form-control <?php echo isset($errors['fullName']) ? 'is-invalid' : ''; ?>" 
+                                               id="fullName" 
+                                               name="fullName" 
+                                               value="<?php echo htmlspecialchars($formData['fullName']); ?>" 
                                                required
                                                autocomplete="name"
                                                placeholder="Enter your full name">
-                                        <?php if ($contactForm->hasError('full_name')): ?>
-                                            <div class="form-error"><?php echo htmlspecialchars($contactForm->getError('full_name')); ?></div>
+                                        <?php if (isset($errors['fullName'])): ?>
+                                            <div class="form-error"><?php echo htmlspecialchars($errors['fullName']); ?></div>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-md-6">
@@ -293,15 +309,15 @@
                                             <i class="fas fa-envelope me-1"></i>Email Address *
                                         </label>
                                         <input type="email" 
-                                               class="form-control <?php echo $contactForm->hasError('email') ? 'is-invalid' : ''; ?>" 
+                                               class="form-control <?php echo isset($errors['email']) ? 'is-invalid' : ''; ?>" 
                                                id="email" 
                                                name="email" 
-                                               value="<?php echo $contactForm->getFormValue('email'); ?>" 
+                                               value="<?php echo htmlspecialchars($formData['email']); ?>" 
                                                required
                                                autocomplete="email"
                                                placeholder="your.email@example.com">
-                                        <?php if ($contactForm->hasError('email')): ?>
-                                            <div class="form-error"><?php echo htmlspecialchars($contactForm->getError('email')); ?></div>
+                                        <?php if (isset($errors['email'])): ?>
+                                            <div class="form-error"><?php echo htmlspecialchars($errors['email']); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -311,35 +327,32 @@
                                             <i class="fas fa-phone me-1"></i>Phone Number *
                                         </label>
                                         <input type="tel" 
-                                               class="form-control <?php echo $contactForm->hasError('phone') ? 'is-invalid' : ''; ?>" 
+                                               class="form-control <?php echo isset($errors['phone']) ? 'is-invalid' : ''; ?>" 
                                                id="phone" 
                                                name="phone" 
-                                               value="<?php echo $contactForm->getFormValue('phone'); ?>" 
+                                               value="<?php echo htmlspecialchars($formData['phone']); ?>" 
                                                required
                                                autocomplete="tel"
                                                placeholder="+1 (555) 123-4567">
-                                        <?php if ($contactForm->hasError('phone')): ?>
-                                            <div class="form-error"><?php echo htmlspecialchars($contactForm->getError('phone')); ?></div>
+                                        <?php if (isset($errors['phone'])): ?>
+                                            <div class="form-error"><?php echo htmlspecialchars($errors['phone']); ?></div>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="country" class="form-label">
                                             <i class="fas fa-globe me-1"></i>Country *
                                         </label>
-                                        <select class="form-select <?php echo $contactForm->hasError('country') ? 'is-invalid' : ''; ?>" 
+                                        <select class="form-select <?php echo isset($errors['country']) ? 'is-invalid' : ''; ?>" 
                                                 id="country" 
                                                 name="country" 
                                                 required>
                                             <option value="">Select your country</option>
-                                            <option value="Australia" <?php echo $contactForm->isSelected('country', 'Australia'); ?>>🇦🇺 Australia</option>
-                                            <option value="New Zealand" <?php echo $contactForm->isSelected('country', 'New Zealand'); ?>>🇳🇿 New Zealand</option>
-                                            <option value="United States" <?php echo $contactForm->isSelected('country', 'United States'); ?>>🇺🇸 United States</option>
-                                            <option value="United Kingdom" <?php echo $contactForm->isSelected('country', 'United Kingdom'); ?>>🇬🇧 United Kingdom</option>
-                                            <option value="Canada" <?php echo $contactForm->isSelected('country', 'Canada'); ?>>🇨🇦 Canada</option>
-                                            <option value="Other" <?php echo $contactForm->isSelected('country', 'Other'); ?>>🌍 Other</option>
+                                            <option value="australia" <?php echo ($formData['country'] === 'australia') ? 'selected' : ''; ?>>🇦🇺 Australia</option>
+                                            <option value="new-zealand" <?php echo ($formData['country'] === 'new-zealand') ? 'selected' : ''; ?>>🇳🇿 New Zealand</option>
+                                            <option value="other" <?php echo ($formData['country'] === 'other') ? 'selected' : ''; ?>>🌍 Other</option>
                                         </select>
-                                        <?php if ($contactForm->hasError('country')): ?>
-                                            <div class="form-error"><?php echo htmlspecialchars($contactForm->getError('country')); ?></div>
+                                        <?php if (isset($errors['country'])): ?>
+                                            <div class="form-error"><?php echo htmlspecialchars($errors['country']); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -347,13 +360,13 @@
                                     <label for="message" class="form-label">
                                         <i class="fas fa-comment-dots me-1"></i>Tell us about your project *
                                     </label>
-                                    <textarea class="form-control <?php echo $contactForm->hasError('message') ? 'is-invalid' : ''; ?>" 
+                                    <textarea class="form-control <?php echo isset($errors['message']) ? 'is-invalid' : ''; ?>" 
                                               id="message" 
                                               name="message" 
                                               rows="6" 
                                               required
                                               maxlength="1000"
-                                              placeholder="Describe your digital needs, project goals, timeline, and budget. What challenges are you facing? What are your objectives? The more details you provide, the better we can help you."><?php echo $contactForm->getFormValue('message'); ?></textarea>
+                                              placeholder="Describe your digital needs, project goals, timeline, and budget. What challenges are you facing? What are your objectives? The more details you provide, the better we can help you."><?php echo htmlspecialchars($formData['message']); ?></textarea>
                                     <div class="form-text d-flex justify-content-between align-items-center">
                                         <span>
                                             <i class="fas fa-info-circle me-1"></i>
@@ -361,8 +374,8 @@
                                         </span>
                                         <span id="charCount">0</span>/1000 characters
                                     </div>
-                                    <?php if ($contactForm->hasError('message')): ?>
-                                        <div class="form-error"><?php echo htmlspecialchars($contactForm->getError('message')); ?></div>
+                                    <?php if (isset($errors['message'])): ?>
+                                        <div class="form-error"><?php echo htmlspecialchars($errors['message']); ?></div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="text-center mt-5">
@@ -404,9 +417,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=<?php echo time(); ?>"></script>
     
     <!-- Contact Form JavaScript -->
-    <script src="assets/js/contact-form.js"></script>
+    <script src="assets/js/contact-form.js?v=<?php echo time(); ?>"></script>
 </body>
 </html> 

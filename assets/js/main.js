@@ -23,7 +23,6 @@ class PaisDigitalApp {
         this.navbar = document.querySelector('.navbar');
         this.heroSection = document.querySelector('.hero-section');
         this.contactForm = document.getElementById('contactForm');
-        this.progressBar = this.createProgressBar();
         
         console.log('🚀 Pais Digital App Initialized');
     }
@@ -185,9 +184,10 @@ class PaisDigitalApp {
 
     // Advanced Form Validation
     handleFormSubmit(e) {
-        e.preventDefault();
-        
-        if (this.formSubmitting) return;
+        if (this.formSubmitting) {
+            e.preventDefault();
+            return;
+        }
         
         const formData = new FormData(this.contactForm);
         const errors = this.validateForm(formData);
@@ -196,24 +196,36 @@ class PaisDigitalApp {
         this.clearFormErrors();
         
         if (Object.keys(errors).length > 0) {
+            e.preventDefault(); // Only prevent submission if there are errors
             this.displayFormErrors(errors);
             this.shakeForm();
             return;
         }
         
-        this.submitForm(formData);
+        // If no errors, show loading state and allow natural form submission
+        this.showSubmittingState();
+        // Don't prevent default - let the form submit naturally
+    }
+
+    showSubmittingState() {
+        this.formSubmitting = true;
+        const submitButton = this.contactForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitButton.disabled = true;
+        }
     }
 
     validateForm(formData) {
         const errors = {};
         const data = Object.fromEntries(formData);
         
-        // Advanced validation rules
+        // Advanced validation rules - updated to match PHP field names
         const validationRules = {
-            full_name: {
+            fullName: {
                 required: true,
                 minLength: 2,
-                pattern: /^[a-zA-Z\s]+$/,
+                pattern: /^[a-zA-Z\s\'-]+$/,
                 message: 'Please enter a valid full name (letters and spaces only)'
             },
             email: {
@@ -223,8 +235,8 @@ class PaisDigitalApp {
             },
             phone: {
                 required: true,
-                pattern: /^[\+]?[0-9\s\-\(\)]{10,}$/,
-                message: 'Please enter a valid phone number (minimum 10 digits)'
+                pattern: /^[\+]?[0-9\s\-\(\)]{8,}$/,
+                message: 'Please enter a valid phone number (minimum 8 digits)'
             },
             country: {
                 required: true,
@@ -243,7 +255,7 @@ class PaisDigitalApp {
             const value = data[field]?.trim() || '';
             
             if (rule.required && !value) {
-                errors[field] = `${this.capitalizeFirst(field.replace('_', ' '))} is required`;
+                errors[field] = `${this.capitalizeFirst(field.replace(/([A-Z])/g, ' $1'))} is required`;
                 return;
             }
             
@@ -341,37 +353,8 @@ class PaisDigitalApp {
         }, 2000);
     }
 
-    async submitForm(formData) {
-        this.formSubmitting = true;
-        const submitButton = this.contactForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        
-        // Show loading state
-        submitButton.innerHTML = '<span class="loading"></span> Sending...';
-        submitButton.disabled = true;
-        
-        try {
-            // Simulate API call (replace with actual endpoint)
-            await this.simulateFormSubmission(formData);
-            
-            // Show success message
-            this.showSuccessMessage();
-            this.contactForm.reset();
-            
-        } catch (error) {
-            console.error('Form submission error:', error);
-            this.showErrorMessage('Something went wrong. Please try again.');
-            
-        } finally {
-            // Reset button state
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-            this.formSubmitting = false;
-        }
-    }
-
     async simulateFormSubmission(formData) {
-        // Simulate network delay
+        // This function is no longer used - keeping for compatibility
         return new Promise((resolve) => {
             setTimeout(resolve, 2000);
         });
@@ -519,6 +502,11 @@ class PaisDigitalApp {
 
     capitalizeFirst(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Initialize Progress Bar
+    initProgressBar() {
+        this.progressBar = this.createProgressBar();
     }
 }
 

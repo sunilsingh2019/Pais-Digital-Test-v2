@@ -1,0 +1,9 @@
+[2025-05-27 09:36:22] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:38:24] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:39:20] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:40:29] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:41:12] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:41:44] [SUCCESS] Email to: john@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:42:26] [SUCCESS] Email to: john@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:42:47] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
+[2025-05-27 09:44:54] [SUCCESS] Email to: test@example.com | Subject: New Contact Form Submission - Pais Digital
