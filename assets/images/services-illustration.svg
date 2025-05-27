@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="deviceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c5aa0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circles -->
+  <circle cx="650" cy="150" r="100" fill="rgba(44,90,160,0.1)"/>
+  <circle cx="150" cy="450" r="80" fill="rgba(74,144,226,0.1)"/>
+  
+  <!-- Laptop -->
+  <g transform="translate(200, 200)">
+    <!-- Laptop base -->
+    <rect x="0" y="80" width="300" height="20" rx="10" fill="url(#deviceGrad)"/>
+    <!-- Laptop screen -->
+    <rect x="20" y="0" width="260" height="160" rx="15" fill="url(#deviceGrad)"/>
+    <rect x="35" y="15" width="230" height="130" rx="8" fill="url(#screenGrad)"/>
+    
+    <!-- Screen content -->
+    <rect x="50" y="30" width="200" height="8" rx="4" fill="#2c5aa0" opacity="0.3"/>
+    <rect x="50" y="45" width="150" height="6" rx="3" fill="#4a90e2" opacity="0.4"/>
+    <rect x="50" y="58" width="180" height="6" rx="3" fill="#2c5aa0" opacity="0.2"/>
+    
+    <!-- Chart representation -->
+    <rect x="50" y="80" width="20" height="40" rx="2" fill="#2c5aa0" opacity="0.6"/>
+    <rect x="80" y="90" width="20" height="30" rx="2" fill="#4a90e2" opacity="0.6"/>
+    <rect x="110" y="70" width="20" height="50" rx="2" fill="#2c5aa0" opacity="0.8"/>
+    <rect x="140" y="85" width="20" height="35" rx="2" fill="#4a90e2" opacity="0.7"/>
+  </g>
+  
+  <!-- Mobile phone -->
+  <g transform="translate(550, 250)">
+    <rect x="0" y="0" width="80" height="140" rx="20" fill="url(#deviceGrad)"/>
+    <rect x="10" y="15" width="60" height="110" rx="8" fill="url(#screenGrad)"/>
+    
+    <!-- Phone content -->
+    <rect x="20" y="25" width="40" height="4" rx="2" fill="#2c5aa0" opacity="0.4"/>
+    <rect x="20" y="35" width="30" height="3" rx="1.5" fill="#4a90e2" opacity="0.5"/>
+    <circle cx="40" cy="60" r="15" fill="#2c5aa0" opacity="0.3"/>
+    <rect x="20" y="85" width="40" height="3" rx="1.5" fill="#4a90e2" opacity="0.4"/>
+    <rect x="20" y="95" width="35" height="3" rx="1.5" fill="#2c5aa0" opacity="0.3"/>
+  </g>
+  
+  <!-- Floating elements -->
+  <g transform="translate(100, 100)">
+    <!-- Code brackets -->
+    <path d="M0,20 L10,10 L10,0 L20,0 M20,40 L10,40 L10,30 L0,20" stroke="#2c5aa0" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M40,20 L30,10 L30,0 L20,0 M20,40 L30,40 L30,30 L40,20" stroke="#4a90e2" stroke-width="3" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Gear icon -->
+  <g transform="translate(600, 400)">
+    <circle cx="30" cy="30" r="25" fill="none" stroke="#2c5aa0" stroke-width="4" opacity="0.4"/>
+    <circle cx="30" cy="30" r="12" fill="#4a90e2" opacity="0.3"/>
+    <rect x="28" y="5" width="4" height="10" fill="#2c5aa0" opacity="0.5"/>
+    <rect x="28" y="45" width="4" height="10" fill="#2c5aa0" opacity="0.5"/>
+    <rect x="5" y="28" width="10" height="4" fill="#2c5aa0" opacity="0.5"/>
+    <rect x="45" y="28" width="10" height="4" fill="#2c5aa0" opacity="0.5"/>
+  </g>
+  
+  <!-- Network nodes -->
+  <g transform="translate(50, 300)">
+    <circle cx="0" cy="0" r="8" fill="#2c5aa0" opacity="0.6"/>
+    <circle cx="60" cy="20" r="6" fill="#4a90e2" opacity="0.6"/>
+    <circle cx="40" cy="60" r="7" fill="#2c5aa0" opacity="0.5"/>
+    <line x1="0" y1="0" x2="60" y2="20" stroke="#2c5aa0" stroke-width="2" opacity="0.3"/>
+    <line x1="60" y1="20" x2="40" y2="60" stroke="#4a90e2" stroke-width="2" opacity="0.3"/>
+    <line x1="0" y1="0" x2="40" y2="60" stroke="#2c5aa0" stroke-width="2" opacity="0.2"/>
+  </g>
+  
+  <!-- Abstract shapes -->
+  <polygon points="700,50 720,80 700,110 680,80" fill="#4a90e2" opacity="0.2"/>
+  <rect x="50" y="50" width="30" height="30" rx="5" fill="#2c5aa0" opacity="0.15" transform="rotate(45 65 65)"/>
+</svg> 

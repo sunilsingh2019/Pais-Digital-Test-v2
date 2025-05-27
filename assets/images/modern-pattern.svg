@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="patternGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c5aa0;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="patternGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#2c5aa0;stop-opacity:0.08" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(44,90,160,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#grid)" />
+  
+  <!-- Geometric shapes -->
+  <circle cx="100" cy="100" r="60" fill="url(#patternGrad1)"/>
+  <circle cx="300" cy="300" r="80" fill="url(#patternGrad2)"/>
+  
+  <!-- Hexagons -->
+  <polygon points="200,50 230,70 230,110 200,130 170,110 170,70" fill="rgba(74,144,226,0.1)"/>
+  <polygon points="320,150 350,170 350,210 320,230 290,210 290,170" fill="rgba(44,90,160,0.08)"/>
+  
+  <!-- Triangles -->
+  <polygon points="50,250 80,300 20,300" fill="rgba(74,144,226,0.12)"/>
+  <polygon points="350,50 380,100 320,100" fill="rgba(44,90,160,0.1)"/>
+  
+  <!-- Rectangles -->
+  <rect x="150" y="250" width="100" height="60" rx="10" fill="rgba(74,144,226,0.08)" transform="rotate(15 200 280)"/>
+  <rect x="250" y="80" width="80" height="40" rx="8" fill="rgba(44,90,160,0.1)" transform="rotate(-20 290 100)"/>
+  
+  <!-- Dots pattern -->
+  <circle cx="80" cy="350" r="4" fill="rgba(44,90,160,0.3)"/>
+  <circle cx="120" cy="370" r="3" fill="rgba(74,144,226,0.4)"/>
+  <circle cx="160" cy="360" r="5" fill="rgba(44,90,160,0.25)"/>
+  <circle cx="200" cy="380" r="3" fill="rgba(74,144,226,0.35)"/>
+  
+  <!-- Lines -->
+  <line x1="50" y1="150" x2="150" y2="180" stroke="rgba(44,90,160,0.2)" stroke-width="2"/>
+  <line x1="250" y1="200" x2="350" y2="170" stroke="rgba(74,144,226,0.25)" stroke-width="2"/>
+</svg> 

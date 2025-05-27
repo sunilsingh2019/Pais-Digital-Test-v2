@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <defs>
+    <linearGradient id="personGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c5aa0;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:0.6" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4fd;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background elements -->
+  <circle cx="500" cy="100" r="60" fill="url(#bgGrad)"/>
+  <circle cx="100" cy="300" r="40" fill="rgba(44,90,160,0.1)"/>
+  
+  <!-- Person 1 -->
+  <g transform="translate(100, 150)">
+    <!-- Head -->
+    <circle cx="30" cy="30" r="25" fill="url(#personGrad)"/>
+    <!-- Body -->
+    <rect x="15" y="50" width="30" height="60" rx="15" fill="url(#personGrad)"/>
+    <!-- Arms -->
+    <rect x="0" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <rect x="45" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <!-- Laptop -->
+    <rect x="20" y="85" width="20" height="15" rx="2" fill="#2c5aa0" opacity="0.8"/>
+  </g>
+  
+  <!-- Person 2 -->
+  <g transform="translate(250, 120)">
+    <!-- Head -->
+    <circle cx="30" cy="30" r="25" fill="url(#personGrad)"/>
+    <!-- Body -->
+    <rect x="15" y="50" width="30" height="60" rx="15" fill="url(#personGrad)"/>
+    <!-- Arms -->
+    <rect x="0" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <rect x="45" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <!-- Tablet -->
+    <rect x="22" y="80" width="16" height="20" rx="3" fill="#4a90e2" opacity="0.8"/>
+  </g>
+  
+  <!-- Person 3 -->
+  <g transform="translate(400, 160)">
+    <!-- Head -->
+    <circle cx="30" cy="30" r="25" fill="url(#personGrad)"/>
+    <!-- Body -->
+    <rect x="15" y="50" width="30" height="60" rx="15" fill="url(#personGrad)"/>
+    <!-- Arms -->
+    <rect x="0" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <rect x="45" y="60" width="15" height="30" rx="7" fill="url(#personGrad)"/>
+    <!-- Phone -->
+    <rect x="25" y="75" width="10" height="18" rx="2" fill="#2c5aa0" opacity="0.8"/>
+  </g>
+  
+  <!-- Connection lines -->
+  <line x1="160" y1="200" x2="250" y2="180" stroke="#4a90e2" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="310" y1="180" x2="400" y2="200" stroke="#2c5aa0" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="160" y1="220" x2="400" y2="220" stroke="#4a90e2" stroke-width="2" opacity="0.3" stroke-dasharray="3,3"/>
+  
+  <!-- Floating icons -->
+  <g transform="translate(200, 80)">
+    <!-- Message bubble -->
+    <circle cx="15" cy="15" r="12" fill="#2c5aa0" opacity="0.3"/>
+    <rect x="8" y="10" width="14" height="2" rx="1" fill="white" opacity="0.8"/>
+    <rect x="8" y="15" width="10" height="2" rx="1" fill="white" opacity="0.6"/>
+    <rect x="8" y="20" width="12" height="2" rx="1" fill="white" opacity="0.7"/>
+  </g>
+  
+  <g transform="translate(350, 60)">
+    <!-- Lightbulb idea -->
+    <circle cx="15" cy="18" r="8" fill="#4a90e2" opacity="0.4"/>
+    <rect x="13" y="26" width="4" height="6" rx="2" fill="#2c5aa0" opacity="0.5"/>
+    <line x1="15" y1="5" x2="15" y2="10" stroke="#4a90e2" stroke-width="2" opacity="0.6"/>
+    <line x1="25" y1="12" x2="22" y2="15" stroke="#4a90e2" stroke-width="2" opacity="0.6"/>
+    <line x1="5" y1="12" x2="8" y2="15" stroke="#4a90e2" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- Collaboration symbols -->
+  <g transform="translate(300, 280)">
+    <!-- Handshake representation -->
+    <path d="M0,10 Q5,5 10,10 Q15,15 20,10" stroke="#2c5aa0" stroke-width="3" fill="none" opacity="0.5"/>
+    <circle cx="5" cy="10" r="3" fill="#4a90e2" opacity="0.6"/>
+    <circle cx="15" cy="10" r="3" fill="#2c5aa0" opacity="0.6"/>
+  </g>
+  
+  <!-- Abstract geometric elements -->
+  <polygon points="50,50 70,40 70,60" fill="#4a90e2" opacity="0.2"/>
+  <rect x="480" y="280" width="20" height="20" rx="3" fill="#2c5aa0" opacity="0.15" transform="rotate(45 490 290)"/>
+  <circle cx="550" cy="350" r="15" fill="#4a90e2" opacity="0.2"/>
+</svg> 
